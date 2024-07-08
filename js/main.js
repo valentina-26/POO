@@ -1,11 +1,11 @@
-class Animal {
-    constructor(nombre, sonido) {
-        this.nombre = nombre;
-        this.sonido = sonido;
+class Figura {
+    constructor(color, area) {
+        this.color = color;
+        this.area = area;
     }
 
-    hacerSonido() {
-        console.log(`El animal hace ${this.sonido}`);
+    calcularArea() {
+        console.log(`El area de la figura es ${this.area}`);
     }
 
 
@@ -15,29 +15,45 @@ class Animal {
 document.querySelector('#registrationForm').addEventListener('submit', function(event) {
     event.preventDefault(); 
 
-    let nombre = document.querySelector('#nombre').value;
-    let edad = document.querySelector('#sonido').value;
+    let color = document.querySelector('#color').value;
+    let area = document.querySelector('#area').value;
 
-    let nuevoanimal = new Animal(nombre, sonido);
-    nuevoanimal.saludar();
+    let nuevafigura = new Figura(color, area);
+    nuevafigura.calcularArea();
 });
 
-// Crea una instancia de la clase animal llamada animal1
-let animal1 = new Animal("vaca", "muuuuuu");
-animal1.hacerSonido();
+
+let figura1 = new Figura("Rosa", "24 cm");
+figura1.calcularArea();
 
 
 
-// Clase perro que hereda de Persona
-class Perro extends Animal {
-    constructor(nombre, sonido,raza) {
-        super(nombre, sonido);
-        this.raza = raza;
+class Circulo extends Figura {
+    constructor(color, area,radio) {
+        super(color, area);
+        this.radio = radio;
     }
 
-    moverCola() {
-        console.log(`está moviendo la cola.`);
-
-        return `está moviendo la cola.`;
+    calcularArea() {
+        return Math.PI * this.radio ** 2;
     }
 }
+
+
+let circulo1 = new Circulo("Rojo", "10 cm", "5 cm");
+circulo1.calcularArea()
+
+class Rectangulo extends Figura {
+    constructor(color, area,largo, ancho) {
+    super(color,area);
+    this.largo = largo;
+    this.ancho = ancho;
+}
+    calcularArea() {
+        return this.largo * this.ancho;
+}
+}
+
+let recatangulo1 = new Rectangulo("verde","20cm","40cm","20cm");
+recatangulo1.calcularArea()
+
