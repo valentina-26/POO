@@ -1,17 +1,14 @@
-class Persona {
-    constructor(nombre, edad, sexo) {
+class Animal {
+    constructor(nombre, sonido) {
         this.nombre = nombre;
-        this.edad = edad;
-        this.sexo = sexo;
+        this.sonido = sonido;
     }
 
-    saludar() {
-        console.log(`Hola Soy ${this.nombre}, tengo ${this.edad} y mi sexo es ${this.sexo}`);
+    hacerSonido() {
+        console.log(`El animal hace ${this.sonido}`);
     }
 
-    static esMayorDeEdad(edad) {
-        return edad >= 18;
-    }
+
 }
 
 
@@ -19,33 +16,28 @@ document.querySelector('#registrationForm').addEventListener('submit', function(
     event.preventDefault(); 
 
     let nombre = document.querySelector('#nombre').value;
-    let edad = document.querySelector('#edad').value;
-    let genero = document.querySelector('#genero').value;
+    let edad = document.querySelector('#sonido').value;
 
-    let nuevaPersona = new Persona(nombre, edad, genero);
-    nuevaPersona.saludar();
+    let nuevoanimal = new Animal(nombre, sonido);
+    nuevoanimal.saludar();
 });
 
-// Crea una instancia de la clase Persona llamada persona1
-let persona1 = new Persona("Ana", 18, "Femenino");
-persona1.saludar();
+// Crea una instancia de la clase animal llamada animal1
+let animal1 = new Animal("vaca", "muuuuuu");
+animal1.hacerSonido();
 
-// Llama al método estático esMayorDeEdad() pasando la edad de persona1
-console.log(Persona.esMayorDeEdad(persona1.edad));
 
-// Clase Estudiante que hereda de Persona
-class Estudiante extends Persona {
-    constructor(nombre, edad, sexo, carrera) {
-        super(nombre, edad, sexo);
-        this.carrera = carrera;
+
+// Clase perro que hereda de Persona
+class Perro extends Animal {
+    constructor(nombre, sonido,raza) {
+        super(nombre, sonido);
+        this.raza = raza;
     }
 
-    estudiar() {
-        console.log(`Hola, estoy estudiando ${this.carrera}`);
+    moverCola() {
+        console.log(`está moviendo la cola.`);
+
+        return `está moviendo la cola.`;
     }
 }
-
-// Crea una instancia de Estudiante y llama al método estudiar
-let estudiante1 = new Estudiante("Pedro", 21, "Masculino", "Ingeniería");
-estudiante1.saludar();
-estudiante1.estudiar();
