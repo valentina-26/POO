@@ -1,8 +1,32 @@
 class Persona {
-    constructor(nombre, edad, sexo) {
+    constructor(nombre, edad, ) {
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
+    }
+
+    set setnombre(nombre){
+        this.nombre=nombre;
+    }
+
+    set setedad(edad){
+        this.edad=edad;
+    }
+
+    set setsexo(sexo){
+        this.sexo=sexo;
+    }
+
+    get getnombre(){
+        return this.ojos
+    }
+
+    get getedad(){
+        return this.edad
+    }
+
+    get getsexo(){
+        return this.sexo
     }
 
     saludar() {
