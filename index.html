@@ -8,27 +8,23 @@
     <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Formulario de Registro</h1>
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="edad">edad:</label>
-                <input type="text" id="edad" name="edad" required>
-            </div>
-            <div class="form-group">
-                <label for="sueldo">Sueldo:</label>
-                <input type="text" id="sueldo" name="sueldo" required>
-            </div>
-            <div class="form-group">
-                <label for="departamento">Departamento:</label>
-                <input type="text" id="departamento" name="departamento" required>
-            </div>
-            <button type="submit">Enviar</button>
-        </form>
+    <h1>Star Wars RPG</h1>
+
+    <div>
+        <button onclick="yodaPresentarse()">Yoda: Presentarse</button>
+        <button onclick="yodaUsarFuerza()">Yoda: Usar la Fuerza</button>
+        <button onclick="yodaEnseñar()">Yoda: Enseñar</button>
+    </div>
+
+    <div>
+        <button onclick="vaderPresentarse()">Darth Vader: Presentarse</button>
+        <button onclick="vaderUsarFuerza()">Darth Vader: Usar la Fuerza</button>
+        <button onclick="vaderCorromper()">Darth Vader: Corromper</button>
+    </div>
+
+    <div class="output">
+        <h2>Consola de Eventos:</h2>
+        <div id="console"></div>
     </div>
 </body>
 </html>

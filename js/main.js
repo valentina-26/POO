@@ -1,50 +1,66 @@
-class Empleado {
-    constructor(nombre, edad, sueldo) {
-        this.id = Empleado.generarIdEmpleado(); 
+class Personaje{
+    #nombre;
+    #Fuerza;
+    constructor(nombre,fuerza){
         this.nombre = nombre;
-        this.edad = edad;
-        this.sueldo = sueldo;
+        this.fuerza = fuerza;
     }
 
-    calcularSalarioAnual() {
-        let salarioAnual = this.sueldo * 12;
-        console.log(`ID del empleado ${this.nombre}: ${this.id}`);
-        console.log(`Salario anual de ${this.nombre}: ${salarioAnual.toFixed(2)}`); 
-    }
-
-    static generarIdEmpleado() {
-        if (!this.nextId) {
-            this.nextId = 1; 
-        } else {
-            this.nextId++; 
-        }
-        return this.nextId;
+    presentarse() {
+        console.log(`Personaje ${this.nombre}, nivel de fuerza: ${this.fuerza}`);
     }
 }
 
-document.querySelector('#registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    let sueldo = parseFloat(document.querySelector('#sueldo').value); 
-    let nombre = document.querySelector('#nombre').value;
-    let edad = parseInt(document.querySelector('#edad').value); 
-
-    let empleado = new Empleado(nombre, edad, sueldo);
-    empleado.calcularSalarioAnual();
-});
-
-class Gerente extends Empleado {
-    constructor(nombre, edad, sueldo, departamento) {
-        super(nombre, edad, sueldo);
-        this.departamento = departamento;
+class Jedi extends Personaje {
+    constructor(fuerza,nombre){
+    super(fuerza,nombre)
+}
+    usarFuerza(){
+        console.log('Jedi esta usando  su fuerza para proteger la galaxia')
     }
 
-    calcularSalarioAnual() {
-        let salarioConBono = this.sueldo * 12 * 1.1;
-        console.log(`ID del gerente ${this.nombre} (${this.departamento}): ${this.id}`);
-        console.log(`Salario anual del gerente ${this.nombre} (${this.departamento}): ${salarioConBono.toFixed(2)}`); // Ajustar la precisión del salario anual con bono
+    entrenar(){
+        console.log(`Incrementando nivel de fuerza ${this.fuerza + 10}`)
     }
 }
 
-let gerente1 = new Gerente('Maria Antonieta', 20, 1000, 'Marketing');
-gerente1.calcularSalarioAnual();
+class sith extends Personaje{
+    constructor(fuerza,nombre){
+        super(fuerza,nombre)
+    }
+
+    usarFuerza(){
+        console.log('sith esta utilizando su fuerza para proteger la galaxia')
+    }
+
+    corromper(){
+        console.log(`Disminuyendo fuerza:-5 unidades :${this.fuerza - 5}`)
+    }
+}
+
+class MaestroJedi extends Jedi{
+    constructor(fuerza,nombre){
+        super(fuerza,nombre)
+    }
+
+    enseñar(){
+        console.log(`Incrementando nivel de fuerza ${this.fuerza + 20}`)
+    }
+
+}
+
+let yoda = new MaestroJedi (10,"nosequenombreponer")
+yoda.presentarse().usarFuerza().enseñar()
+
+let darthVader = new sith (8,"otronombre")
+darthVader.presentarse().usarFuerza().corromper()
+
+
+const batalla = (Personaje1,Personaje2) =>{
+    console.log(`inicio de la batalla....`)
+    // if (Personaje1.fuerza > Personaje2.fuerza){
+    //     console.log(`El personaje1 fue el conquistador de la galaxia`)
+    // }else{
+    //     console.log(`El Personaje2 fue el conquistador de la galaxia`)
+    // }
+} 
