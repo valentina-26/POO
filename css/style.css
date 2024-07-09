@@ -1,14 +1,55 @@
 body {
-    font-family: Arial, sans-serif;
+    
+    padding: 20px;
+    background: linear-gradient(to bottom right, #020735, #16436b, #92132b, #000000); 
+    color: white; 
+    height: 100vh; 
+
+}
+
+h1{
+    text-align: center;
+    color: #92132b;
+}
+
+.personajes{
+    /* background-color:aquamarine; */
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
     padding: 20px;
 }
+   
+.personaje1{
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.personaje2{
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+}
+
 button {
-    padding: 10px 20px;
+    padding: 10px ;
     font-size: 16px;
-    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    color: white;
+    background-color: #020735;
+    border-color: #020735;
 }
 .output {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 20px;
+    width:250px;
+    margin-left: 44%;
+}
+
+#iniciarBatalla{
+    margin-left: 48%;
 }

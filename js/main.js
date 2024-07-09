@@ -1,66 +1,101 @@
-class Personaje{
+class Personaje {
     #nombre;
-    #Fuerza;
-    constructor(nombre,fuerza){
-        this.nombre = nombre;
-        this.fuerza = fuerza;
+    #fuerza;
+
+    constructor(nombre, fuerza) {
+        this.#nombre = nombre;
+        this.#fuerza = fuerza;
+    }
+
+    get nombre() {
+        return this.#nombre;
+    }
+
+    get fuerza() {
+        return this.#fuerza;
+    }
+
+    set fuerza(valor) {
+        this.#fuerza = valor;
     }
 
     presentarse() {
-        console.log(`Personaje ${this.nombre}, nivel de fuerza: ${this.fuerza}`);
+        this.imprimirMensaje(`Personaje ${this.#nombre}, nivel de fuerza: ${this.#fuerza}`);
+    }
+
+    imprimirMensaje(mensaje) {
+        const consoleDiv = document.querySelector("#console");
+        const messageElement = document.createElement("p");
+        messageElement.textContent = mensaje;
+        consoleDiv.appendChild(messageElement);
     }
 }
 
 class Jedi extends Personaje {
-    constructor(fuerza,nombre){
-    super(fuerza,nombre)
-}
-    usarFuerza(){
-        console.log('Jedi esta usando  su fuerza para proteger la galaxia')
+    usarFuerza() {
+        this.imprimirMensaje(`${this.nombre} está utilizando la Fuerza para proteger la galaxia`);
     }
 
-    entrenar(){
-        console.log(`Incrementando nivel de fuerza ${this.fuerza + 10}`)
+    entrenar() {
+        this.fuerza += 10;
+        this.imprimirMensaje(`${this.nombre} ha incrementado su nivel de fuerza a ${this.fuerza}`);
     }
 }
 
-class sith extends Personaje{
-    constructor(fuerza,nombre){
-        super(fuerza,nombre)
+class Sith extends Personaje {
+    usarFuerza() {
+        this.imprimirMensaje(`${this.nombre} está utilizando la Fuerza para conquistar la galaxia`);
     }
 
-    usarFuerza(){
-        console.log('sith esta utilizando su fuerza para proteger la galaxia')
-    }
-
-    corromper(){
-        console.log(`Disminuyendo fuerza:-5 unidades :${this.fuerza - 5}`)
+    corromper() {
+        this.fuerza -= 5;
+        this.imprimirMensaje(`${this.nombre} ha disminuido su nivel de fuerza a ${this.fuerza}`);
     }
 }
 
-class MaestroJedi extends Jedi{
-    constructor(fuerza,nombre){
-        super(fuerza,nombre)
+class MaestroJedi extends Jedi {
+    enseñar() {
+        this.fuerza += 20;
+        this.imprimirMensaje(`${this.nombre} ha incrementado su nivel de fuerza a ${this.fuerza}`);
     }
-
-    enseñar(){
-        console.log(`Incrementando nivel de fuerza ${this.fuerza + 20}`)
-    }
-
 }
 
-let yoda = new MaestroJedi (10,"nosequenombreponer")
-yoda.presentarse().usarFuerza().enseñar()
+const yoda = new MaestroJedi("Yoda", 10);
+const darthVader = new Sith("Darth Vader", 8);
 
-let darthVader = new sith (8,"otronombre")
-darthVader.presentarse().usarFuerza().corromper()
+document.querySelector("#yodaPresentarse").addEventListener("click", () => yoda.presentarse());
+document.querySelector("#yodaUsarFuerza").addEventListener("click", () => yoda.usarFuerza());
+document.querySelector("#yodaEnseñar").addEventListener("click", () => yoda.enseñar());
 
+document.querySelector("#vaderPresentarse").addEventListener("click", () => darthVader.presentarse());
+document.querySelector("#vaderUsarFuerza").addEventListener("click", () => darthVader.usarFuerza());
+document.querySelector("#vaderCorromper").addEventListener("click", () => darthVader.corromper());
 
-const batalla = (Personaje1,Personaje2) =>{
-    console.log(`inicio de la batalla....`)
-    // if (Personaje1.fuerza > Personaje2.fuerza){
-    //     console.log(`El personaje1 fue el conquistador de la galaxia`)
-    // }else{
-    //     console.log(`El Personaje2 fue el conquistador de la galaxia`)
-    // }
-} 
+const batalla = (personaje1, personaje2) => {
+    const consoleDiv = document.querySelector("#console");
+    consoleDiv.innerHTML = "";  // Clear previous messages
+    consoleDiv.innerHTML += `<p>Inicio de la batalla...</p>`;
+
+    personaje1.usarFuerza();
+    personaje2.usarFuerza();
+
+    if (personaje1 instanceof MaestroJedi) {
+        personaje1.enseñar();
+    } else if (personaje1 instanceof Sith) {
+        personaje1.corromper();
+    }
+
+    if (personaje2 instanceof MaestroJedi) {
+        personaje2.enseñar();
+    } else if (personaje2 instanceof Sith) {
+        personaje2.corromper();
+    }
+
+    if (personaje1.fuerza > personaje2.fuerza) {
+        consoleDiv.innerHTML += `<p>${personaje1.nombre} ha conquistado la galaxia!</p>`;
+    } else {
+        consoleDiv.innerHTML += `<p>${personaje2.nombre} ha conquistado la galaxia!</p>`;
+    }
+}
+
+document.querySelector("#iniciarBatalla").addEventListener("click", () => batalla(yoda, darthVader));

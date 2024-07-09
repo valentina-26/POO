@@ -9,22 +9,25 @@
 </head>
 <body>
     <h1>Star Wars RPG</h1>
+    <section class="personajes">
+        <div class="personaje1">
+            <button id="yodaPresentarse">Yoda: Presentarse</button>
+            <button id="yodaUsarFuerza">Yoda: Usar la Fuerza</button>
+            <button id="yodaEnseñar">Yoda: Enseñar</button>
+        </div>
 
-    <div>
-        <button onclick="yodaPresentarse()">Yoda: Presentarse</button>
-        <button onclick="yodaUsarFuerza()">Yoda: Usar la Fuerza</button>
-        <button onclick="yodaEnseñar()">Yoda: Enseñar</button>
-    </div>
-
-    <div>
-        <button onclick="vaderPresentarse()">Darth Vader: Presentarse</button>
-        <button onclick="vaderUsarFuerza()">Darth Vader: Usar la Fuerza</button>
-        <button onclick="vaderCorromper()">Darth Vader: Corromper</button>
-    </div>
+        <div class="personaje2">
+            <button id="vaderPresentarse">Darth Vader: Presentarse</button>
+            <button id="vaderUsarFuerza">Darth Vader: Usar la Fuerza</button>
+            <button id="vaderCorromper">Darth Vader: Corromper</button>
+        </div>
+    </section>
 
     <div class="output">
-        <h2>Consola de Eventos:</h2>
+        <h2></h2>
         <div id="console"></div>
     </div>
+
+    <button id="iniciarBatalla">iniciar batalla</button>
 </body>
 </html>
